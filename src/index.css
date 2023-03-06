@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Rocher';
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
 body{
   font-family: 'Montserrat', sans-serif;
   color: black;
@@ -26,6 +31,30 @@ body{
   font-weight: bold;
   display: inline-block;
   margin-top: 1rem;
+  font-size: 20px;
+  color: #8EC5FC;
+  -webkit-text-stroke: 1px #383d52;
+}
+
+.logo::before{
+  content: attr(data-text);
+  position: absolute;
+  width: 0%;
+  height: 35px;
+  color: #3f3f3f;
+  -webkit-text-stroke: 0vw #8EC5FC;
+  border-right: 1px solid #000000 ;
+  overflow: hidden;
+  animation: animate 6s linear infinite;
+}
+
+@keyframes animate{
+  0%, 30%, 100%{
+    width: 0;
+  }
+  70%, 90%{
+    width: 8%;
+  }
 }
 
 .content{
@@ -35,11 +64,15 @@ body{
   margin-top: 15rem;
 }
 
-.content_title{
-  font-weight: 700;
+ .content_title{
+  font-weight: bolder;
   font-size: 60px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin-bottom: 10px;
   text-align: center;
+  text-shadow: #383d52;
+  -webkit-text-stroke-color: #00ffaa;
+  font-family: Rocher;
 }
 
 .content_description{
@@ -70,7 +103,7 @@ body{
 
 .form .form_button{
   align-self: center;
-  background-color: #fff;
+  background-color: #ffffff;
   background-image: none;
   background-position: 0 90%;
   background-repeat: repeat no-repeat;

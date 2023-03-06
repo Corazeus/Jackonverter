@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="App">
 
-      <span className='logo'> jackonverter </span>
+      <span className='logo' data-text="JACKONVERTER">JACKONVERTER</span>
 
       <section className='content'>
 
