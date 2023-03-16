@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react'
 import { youtube_parser } from './utils';
-import axios from 'axios'
+import axios from 'axios';
+import { Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
   const inputUrlRef = useRef();
   const [urlResult, setUrlResult] = useState(null);
+  const [embedID, setEmbedID] = useState(null);
 
   const handleSubmit = (e) => {
 
@@ -14,7 +17,7 @@ function App() {
     const youtubeID = youtube_parser(inputUrlRef.current.value);
 
     console.log(inputUrlRef.current.value);
-    console.log("Video ID: "+youtubeID);
+    console.log("Video ID: " + youtubeID);
 
     const options = {
       method: 'GET',
@@ -32,8 +35,8 @@ function App() {
     }
 
     axios(options)
-    .then(res => setUrlResult(res.data.link))
-    .catch(err => console.log(err))
+      .then(res => setUrlResult(res.data.link), setEmbedID(youtubeID))
+      .catch(err => console.log(err))
 
     inputUrlRef.current.value = '';
 
@@ -56,10 +59,18 @@ function App() {
 
         <form onSubmit={handleSubmit} className='form'>
 
-          <input ref={inputUrlRef} placeholder='Paste your Youtube video URL here...' type='text' className='form_input'/>
+          <input ref={inputUrlRef} placeholder='Paste your Youtube video URL here...' type='text' className='form_input' />
           <button type='submit' className='form_button'>Search</button>
 
         </form>
+
+        {urlResult ?
+          <Container>
+            <div className='video-container'>
+              <h4>Youtube Video</h4>
+              <iframe src={`https://www.youtube.com/embed/${embedID}`} title='Youtube Video' allowFullScreen></iframe>
+            </div>
+          </Container> : ''}
 
         {urlResult ? <a href={urlResult} target='_blank' rel='noreferrer' className='download_btn'> Download MP3</a> : ''}
 
