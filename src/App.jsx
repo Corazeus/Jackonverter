@@ -64,15 +64,38 @@ function App() {
 
         </form>
 
+        <br></br>
+
         {urlResult ?
           <Container>
             <div className='video-container'>
-              <h4>Youtube Video</h4>
+              <h4 className='youtube-video-title'>Youtube Video</h4>
               <iframe src={`https://www.youtube.com/embed/${embedID}`} title='Youtube Video' allowFullScreen></iframe>
             </div>
           </Container> : ''}
+        <div>
+          {urlResult ?
 
-        {urlResult ? <a href={urlResult} target='_blank' rel='noreferrer' className='download_btn'> Download MP3</a> : ''}
+            <button className='button-3'>
+              <a href={urlResult} target='_blank' rel='noreferrer' className='download_btn'> Download MP3</a>
+            </button>
+
+            : ''}
+
+          {urlResult ?
+
+            <button className='button-3' onClick={() => window.location.reload(true)}>
+              <a href="" target='_blank' rel='noreferrer' className='download_btn'> Convert Next</a>
+            </button>
+
+            : ''}
+        </div>
+
+        <br></br>
+
+        {urlResult ?
+          <p className='instructions'> To download click the Download MP3 button and to convert another video click the Convert Next button, or you can just paste a new URL and click the Search button.</p>
+          : ''}
 
       </section>
 
